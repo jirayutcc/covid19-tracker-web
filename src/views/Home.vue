@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div id="home" class="align-center">
+    <div id="home">
       <img alt="Vue logo" src="../assets/covid19.png" />
       <h1>COVID19 TRACKER WEB</h1>
     </div>
