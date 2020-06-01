@@ -2,11 +2,11 @@
   <v-container>
     <v-app id="app">
       <v-content>
+        <br />
         <v-row class="justify-center">
-          <img alt="Vue logo" src="@/assets/covid19.png" />
-        </v-row>
-        <v-row class="justify-center">
-          <h1>TRACKER WEB</h1>
+          <v-lazy min-height="100" transition="scale-transition">
+            <img src="@/assets/covid19.png" />
+          </v-lazy>
         </v-row>
         <v-row class="justify-center">
           <Cards :datas="{ confirmed, recovered, deaths, lastUpdate }" />
