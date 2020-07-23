@@ -9,7 +9,7 @@
           </v-lazy>
         </v-row>
         <v-row class="justify-center">
-          <Cards :datas="{ confirmed, recovered, deaths, lastUpdate }" />
+          <Cards :cardsData="{ confirmed, recovered, deaths, lastUpdate }" />
         </v-row>
       </v-content>
     </v-app>
@@ -30,18 +30,17 @@ export default {
       confirmed: [],
       recovered: [],
       deaths: [],
-      lastUpdate: "",
+      lastUpdate: ""
     };
   },
   created() {
     axios
       .get(`https://covid19.mathdro.id/api`)
-      .then((response) => {
-        console.log(":= ", response.data);
-        this.confirmed = response.data.confirmed;
-        this.recovered = response.data.recovered;
-        this.deaths = response.data.deaths;
-        this.lastUpdate = response.data.lastUpdate;
+      .then(({ data }) => {
+        this.confirmed = data.confirmed;
+        this.recovered = data.recovered;
+        this.deaths = data.deaths;
+        this.lastUpdate = data.lastUpdate;
       })
       .catch((e) => {
         console.error("error : ", e);

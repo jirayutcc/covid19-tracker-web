@@ -6,9 +6,9 @@
           <v-lazy min-height="100" transition="fab-transition">
             <v-card class="text-center text-md-left">
               <v-card-subtitle class="pb-0 text-md-left">Infected</v-card-subtitle>
-              <v-card-title id="Infected">{{ datas.confirmed.value.toLocaleString() }}</v-card-title>
+              <v-card-title id="Infected">{{ cardsData.confirmed.value.toLocaleString() }}</v-card-title>
               <v-card-text>
-                <div>{{ new Date(datas.lastUpdate).toDateString() }}</div>
+                <div>{{ new Date(cardsData.lastUpdate).toDateString() }}</div>
               </v-card-text>
             </v-card>
           </v-lazy>
@@ -17,9 +17,9 @@
           <v-lazy min-height="100" transition="fab-transition">
           <v-card class="text-center text-md-left" >
             <v-card-subtitle class="pb-0 text-md-left">Recovered</v-card-subtitle>
-            <v-card-title id="Recovered">{{ datas.recovered.value.toLocaleString() }}</v-card-title>
+            <v-card-title id="Recovered">{{ cardsData.recovered.value.toLocaleString() }}</v-card-title>
             <v-card-text>
-              <div>{{ new Date(datas.lastUpdate).toDateString() }}</div>
+              <div>{{ new Date(cardsData.lastUpdate).toDateString() }}</div>
             </v-card-text>
           </v-card>
           </v-lazy>
@@ -28,9 +28,9 @@
           <v-lazy min-height="100" transition="fab-transition">
            <v-card class="text-center text-md-left">
             <v-card-subtitle class="pb-0 text-md-left">Deaths</v-card-subtitle>
-            <v-card-title id="Deaths" class="text-center">{{ datas.deaths.value.toLocaleString() }}</v-card-title>
+            <v-card-title id="Deaths" class="text-center">{{ cardsData.deaths.value.toLocaleString() }}</v-card-title>
             <v-card-text>
-              <div>{{ new Date(datas.lastUpdate).toDateString() }}</div>
+              <div>{{ new Date(cardsData.lastUpdate).toDateString() }}</div>
             </v-card-text>
           </v-card>
           </v-lazy>
@@ -43,7 +43,7 @@
 <script>
 export default {
   name: "Cards",
-  props: ["datas"],
+  props: ["cardsData"],
 };
 </script>
 
