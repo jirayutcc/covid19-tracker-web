@@ -11,6 +11,10 @@
         <v-row class="justify-center">
           <Cards :cardsData="{ confirmed, recovered, deaths, lastUpdate }" />
         </v-row>
+        <br>
+        <v-row class="justify-center">
+          <Chart :chartData="{ confirmed, recovered, deaths }"/>
+        </v-row>
       </v-content>
     </v-app>
   </v-container>
@@ -19,11 +23,13 @@
 <script>
 import axios from "axios";
 import Cards from "@/components/Cards";
+import Chart from "@/components/Chart";
 
 export default {
   name: "App",
   components: {
     Cards,
+    Chart
   },
   data() {
     return {
