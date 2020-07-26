@@ -1,24 +1,15 @@
-# covid19-tracker-web
+# Covid19 Tracker Web
 
-## Project setup
+### [Live Site](https://convid19trackerweb.herokuapp.com/)
+
+![COVID-19 Tracker](https://i.ibb.co/HnS5nhP/webtrackerimg.png)
+
+### API used
 ```
-yarn install
+https://covid19.mathdro.id/api
 ```
 
-### Compiles and hot-reloads for development
+### Project setup
 ```
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
