@@ -1,21 +1,28 @@
 <template>
   <v-container>
     <v-app id="app">
-      <v-content>
+      <v-main>
         <br />
         <v-row class="justify-center">
           <v-lazy min-height="100" transition="scale-transition">
             <img src="@/assets/covid19.png" />
           </v-lazy>
         </v-row>
-        <v-row class="justify-center">
+        <v-row v-if=!apiClose class="justify-center">
           <Cards :cardsData="{ confirmed, recovered, deaths, lastUpdate }" />
         </v-row>
         <br>
-        <v-row class="justify-center">
+        <v-row v-if=!apiClose class="justify-center">
           <Chart :chartData="{ confirmed, recovered, deaths }"/>
         </v-row>
-      </v-content>
+        <v-col v-if=apiClose>
+          <v-lazy min-height="100" transition="fab-transition">
+            <v-card class="text-center">
+              <v-card-title class="justify-center">API FETCH DATA IS CLOSE</v-card-title>
+            </v-card>
+          </v-lazy>
+        </v-col>
+      </v-main>
     </v-app>
   </v-container>
 </template>
@@ -36,7 +43,8 @@ export default {
       confirmed: [],
       recovered: [],
       deaths: [],
-      lastUpdate: ""
+      lastUpdate: "",
+      apiClose: false,
     };
   },
   created() {
@@ -49,6 +57,7 @@ export default {
         this.lastUpdate = data.lastUpdate;
       })
       .catch((e) => {
+        this.apiClose = true
         console.error("error : ", e);
       });
   },
