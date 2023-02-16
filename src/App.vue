@@ -18,7 +18,7 @@
         <v-col v-if=apiClose>
           <v-lazy min-height="100" transition="fab-transition">
             <v-card class="text-center">
-              <v-card-title class="justify-center">API FETCH DATA IS CLOSE</v-card-title>
+              <v-card-title class="justify-center">API FETCH DATA IS CLOSED</v-card-title>
             </v-card>
           </v-lazy>
         </v-col>
