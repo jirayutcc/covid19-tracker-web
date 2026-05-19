@@ -5,41 +5,69 @@
 </template>
 
 <script>
-import axios from "axios";
 import Chart from "chart.js";
 
 export default {
   name: "Chart",
   props: ["chartData"],
-  mounted: function() {
-    axios
-      .get(`https://covid19.mathdro.id/api`)
-      .then(({ data }) => {
-        var ctx = document.getElementById("graph").getContext("2d");
-        var bar = new Chart(ctx, {
-          type: "pie",
-          data: {
-            labels: ["confirmed", "recovered", "deaths"],
-            datasets: [
-              {
-                label: "#",
-                data: [
-                  data.confirmed.value,
-                  data.recovered.value,
-                  data.deaths.value,
-                ],
-                backgroundColor: ["#3498DB", "#1ABC9C", "#E74C3C"],
-              },
-            ],
-          },
-        });
-        console.log(bar);
-      })
-      .catch((e) => {
-        console.error("error : ", e);
+  data() {
+    return {
+      chart: null,
+    };
+  },
+  mounted() {
+    this.renderChart();
+  },
+  watch: {
+    chartData() {
+      this.renderChart();
+    },
+  },
+  beforeDestroy() {
+    if (this.chart) {
+      this.chart.destroy();
+    }
+  },
+  methods: {
+    renderChart() {
+      if (!this.chartData) {
+        return;
+      }
+
+      var ctx = document.getElementById("graph").getContext("2d");
+
+      if (this.chart) {
+        this.chart.destroy();
+      }
+
+      this.chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: ["confirmed", "recovered", "deaths"],
+          datasets: [
+            {
+              label: "#",
+              data: [
+                this.chartData.cases || 0,
+                this.chartData.recovered || 0,
+                this.chartData.deaths || 0,
+              ],
+              backgroundColor: ["#3498DB", "#1ABC9C", "#E74C3C"],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
       });
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#chart {
+  height: 360px;
+}
+</style>

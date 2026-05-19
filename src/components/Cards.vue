@@ -3,12 +3,12 @@
     <div id="cards">
       <v-row class="justify-center">
         <v-col cols="12" md="3">
-          <v-lazy min-height="100" transition="fab-transition">
-            <v-card class="text-center text-md-left">
-              <v-card-subtitle class="pb-0 text-md-left">Infected</v-card-subtitle>
-              <v-card-title id="Infected">{{ cardsData.confirmed.value }}</v-card-title>
+            <v-lazy min-height="100" transition="fab-transition">
+              <v-card class="text-center text-md-left">
+                <v-card-subtitle class="pb-0 text-md-left">Infected</v-card-subtitle>
+              <v-card-title id="Infected">{{ formatNumber(cardsData.cases) }}</v-card-title>
               <v-card-text>
-                <div>{{ new Date(cardsData.lastUpdate).toDateString() }}</div>
+                <div>{{ formattedDate }}</div>
               </v-card-text>
             </v-card>
           </v-lazy>
@@ -17,9 +17,9 @@
           <v-lazy min-height="100" transition="fab-transition">
           <v-card class="text-center text-md-left" >
             <v-card-subtitle class="pb-0 text-md-left">Recovered</v-card-subtitle>
-            <v-card-title id="Recovered">{{ cardsData.recovered.value }}</v-card-title>
+            <v-card-title id="Recovered">{{ formatNumber(cardsData.recovered) }}</v-card-title>
             <v-card-text>
-              <div>{{ new Date(cardsData.lastUpdate).toDateString() }}</div>
+              <div>{{ formattedDate }}</div>
             </v-card-text>
           </v-card>
           </v-lazy>
@@ -28,9 +28,9 @@
           <v-lazy min-height="100" transition="fab-transition">
            <v-card class="text-center text-md-left">
             <v-card-subtitle class="pb-0 text-md-left">Deaths</v-card-subtitle>
-            <v-card-title id="Deaths" class="text-center">{{ cardsData.deaths.value }}</v-card-title>
+            <v-card-title id="Deaths" class="text-center">{{ formatNumber(cardsData.deaths) }}</v-card-title>
             <v-card-text>
-              <div>{{ new Date(cardsData.lastUpdate).toDateString() }}</div>
+              <div>{{ formattedDate }}</div>
             </v-card-text>
           </v-card>
           </v-lazy>
@@ -44,6 +44,20 @@
 export default {
   name: "Cards",
   props: ["cardsData"],
+  computed: {
+    formattedDate() {
+      if (!this.cardsData || !this.cardsData.updated) {
+        return "No update date";
+      }
+
+      return new Date(this.cardsData.updated).toDateString();
+    },
+  },
+  methods: {
+    formatNumber(value) {
+      return Number(value || 0).toLocaleString();
+    },
+  },
 };
 </script>
 
