@@ -2,14 +2,16 @@
 
 ### [Live Site](https://convid19trackerweb.netlify.app/)
 
-![COVID-19 Tracker](https://i.ibb.co/HnS5nhP/webtrackerimg.png)
+![COVID-19 Tracker](https://i.ibb.co/xK1ywHtC/webtrackerimg.jpg)
 
 ### API used
+
 ```
-https://covid19.mathdro.id/api
+disease.sh Open Disease API
 ```
 
 ### Project setup
+
 ```
-yarn serve
+npm run serve
 ```
